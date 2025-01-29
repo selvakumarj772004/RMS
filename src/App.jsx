@@ -28,7 +28,7 @@ function App() {
     fetch(`http://localhost:8080/api/students/${registerNumber}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Student not found");
+          throw new Error("Register Number Not Found");
         }
         return response.json();
       })
@@ -138,7 +138,17 @@ function App() {
                 })}
             </tbody>
           </table>
-          <button onClick={() => setStudentData(null)}>Back</button>
+          <button
+  onClick={() => {
+    setStudentData(null);
+    setRegisterNumber("");
+    setCaptcha("");
+    setGeneratedCaptcha(generateCaptcha());
+    setError("");
+  }}
+>
+  Back
+</button>
         </div>
       )}
     </div>
